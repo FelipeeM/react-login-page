@@ -1,5 +1,7 @@
-import React from "react";
+import React,{useContext} from "react";
 import './login.css'
+
+import { AuthContext } from "../../context/auth";
 
 import {
   Checkbox,
@@ -17,13 +19,16 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 const Login = () => {
   const [values, setValues] = React.useState({
     keepConnected: false,
-    user: '',
+    email: '',
     password: '',
     showPassword: false,
   });
 
+  const {authenticated, login} = useContext(AuthContext)
+
   const showValues = () => {
     console.log("values:", values)
+    login(values.email,values.password)
   }
 
   const handleChangeChecked = () => {
@@ -49,6 +54,7 @@ const Login = () => {
 
   return (
     <div className="centerContainer">
+      <p>{String(authenticated)}</p>
       <Paper elevation={3} style={{ padding: 30, 'maxWidth': '300px' }}>
         <FormControl>
           <Grid
@@ -60,7 +66,7 @@ const Login = () => {
             <Grid item xs={12}>
               <TextField fullWidth 
                 label="Email"
-                onChange={handleChange('user')}
+                onChange={handleChange('email')}
               />
             </Grid>
             <Grid item xs={12}>
