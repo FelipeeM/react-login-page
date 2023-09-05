@@ -8,6 +8,8 @@ import {
 
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
+import Menu2 from './pages/Menu2/Menu2';
+import MenuAppBar from './components/appBar/AppBar';
 
 import { AuthProvider, AuthContext } from "./context/auth";
 
@@ -22,7 +24,10 @@ const AppRoutes = () => {
         if (!authenticated) {
             return <Navigate to="/login" />
         }
-        return children
+        return <>
+        <MenuAppBar/>{children}
+        
+        </>
     }
 
     return (
@@ -33,6 +38,16 @@ const AppRoutes = () => {
                     <Route exact path="/" element={
                         <Private >
                             <Home />
+                        </Private>
+                    } ></Route>
+                    <Route exact path="/Home" element={
+                        <Private >
+                             <Home />
+                        </Private>
+                    } ></Route>
+                    <Route exact path="/Menu2" element={
+                        <Private >
+                             <Menu2 />
                         </Private>
                     } ></Route>
                 </Routes>

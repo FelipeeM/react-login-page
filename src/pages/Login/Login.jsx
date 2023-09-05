@@ -54,7 +54,6 @@ const Login = () => {
 
   return (
     <div className="centerContainer">
-      <p>{String(authenticated)}</p>
       <Paper elevation={3} style={{ padding: 30, 'maxWidth': '300px' }}>
         <FormControl>
           <Grid
